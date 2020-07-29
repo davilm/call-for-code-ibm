@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
+import Home from './components/card';
+
 const App: React.FC = () => {
 
   return (
 
-    <View >
-      <Text>Hello IBM</Text>
-    </View>
+    <Home />
 
   )
 }
