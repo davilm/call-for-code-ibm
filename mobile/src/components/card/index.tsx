@@ -12,7 +12,7 @@ const Home: React.FC = () => {
   const [image, setImage] = useState('Cargo');
 
   useEffect(() => {
-    const { name, description, picture } = response;
+    const { name, description, picture } = response[0];
 
     const { title, first, last } = name;
 
