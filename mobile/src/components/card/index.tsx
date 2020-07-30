@@ -1,10 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+import { Image } from 'react-native';
 
 import styled from 'styled-components';
+
+import response from '../../assets/response.json';
 
 const Home: React.FC = () => {
   const [name, setName] = useState('Nome Sobrenome');
   const [description, setDescription] = useState('Cargo');
+  const [image, setImage] = useState('Cargo');
+
+  useEffect(() => {
+    const { name, description, picture } = response;
+
+    const { title, first, last } = name;
+
+    const fullName = title.concat(" ", first, " ", last);
+
+    setName(fullName);
+    setDescription(description);
+    setImage(picture);
+
+  }, []);
 
   return (
 
@@ -19,7 +37,10 @@ const Home: React.FC = () => {
           justifyContent: 'center',
           alignItems: 'center'
         }}>
-          <Text>imagem</Text>
+          <Image
+            style={{ width: "100%", height: "100%" }}
+            source={{ uri: `${image}` }}
+          />
         </View>
         <View style={{ flexDirection: 'column', marginLeft: 10, justifyContent: 'flex-end' }}>
           <View>
