@@ -1,9 +1,20 @@
-{
-  "name": {
-    "title": "Mr",
-    "first": "Daniel",
-    "last": "Toivonen"
+[
+  {
+    "name": {
+      "title": "Mr",
+      "first": "Daniel",
+      "last": "Toivonen"
+    },
+    "description": "Lorem ipsum dolor sit amet",
+    "picture": "https://icon-library.com/images/no-profile-pic-icon/no-profile-pic-icon-27.jpg"
   },
-  "description": "Lorem ipsum dolor sit amet",
-  "picture": "https://icon-library.com/images/no-profile-pic-icon/no-profile-pic-icon-27.jpg"
-}
+  {
+    "name": {
+      "title": "Mr",
+      "first": "Rasmus",
+      "last": "Pedersen"
+    },
+    "description": "Lorem ipsum dolor sit amet",
+    "picture": "https://icon-library.com/images/no-profile-pic-icon/no-profile-pic-icon-27.jpg"
+  }
+]
