@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-import Home from '../../components/card';
+import Card from '../../components/card';
 
 const Person = {
   name: "Davi Leal",
@@ -12,7 +12,7 @@ const Person = {
 const Details: React.FC = () => {
 
   return (
-    <Home data={Person} />
+    <Card data={Person} />
   )
 }
 
