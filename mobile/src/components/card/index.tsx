@@ -6,23 +6,11 @@ import styled from 'styled-components';
 
 import response from '../../assets/response.json';
 
-const Home: React.FC = () => {
-  const [name, setName] = useState('Nome Sobrenome');
-  const [description, setDescription] = useState('Cargo');
-  const [image, setImage] = useState('Cargo');
+const Home: React.FC = props => {
 
-  useEffect(() => {
-    const { name, description, picture } = response[0];
-
-    const { title, first, last } = name;
-
-    const fullName = title.concat(" ", first, " ", last);
-
-    setName(fullName);
-    setDescription(description);
-    setImage(picture);
-
-  }, []);
+  const { name } = props.data;
+  const { description } = props.data;
+  const { picture } = props.data;
 
   return (
 
@@ -39,7 +27,7 @@ const Home: React.FC = () => {
         }}>
           <Image
             style={{ width: "100%", height: "100%" }}
-            source={{ uri: `${image}` }}
+            source={{ uri: `${picture}` }}
           />
         </View>
         <View style={{ flexDirection: 'column', marginLeft: 10, justifyContent: 'flex-end' }}>
@@ -57,8 +45,6 @@ const Home: React.FC = () => {
 }
 
 const View = styled.View``;
-
-const Text = styled.Text``;
 
 const Name = styled.Text`
   font-size:16;
