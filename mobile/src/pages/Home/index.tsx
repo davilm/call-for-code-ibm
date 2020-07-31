@@ -63,7 +63,8 @@ const Home: React.FC = () => {
               id: response.id,
               title: response.name,
               location: response.location,
-              api: `missions`
+              api: `missions/${response.id}`,
+              inThisMission: true
             })}>
               <Card data={response} />
             </TouchableOpacity>

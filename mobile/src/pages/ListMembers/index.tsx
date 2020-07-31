@@ -29,6 +29,7 @@ const ListMembers: React.FC = () => {
 
   let { location } = '';
   let { preTitle } = '';
+  let { inThisMission } = '';
 
   if (route.params.preTitle) {
     preTitle = route.params.preTitle;
@@ -36,6 +37,9 @@ const ListMembers: React.FC = () => {
 
   if (route.params.location) {
     location = route.params.location;
+  }
+  if (route.params.inThisMission) {
+    inThisMission = route.params.inThisMission;
   }
 
 
@@ -61,6 +65,11 @@ const ListMembers: React.FC = () => {
         {location &&
           <View>
             <Text style={{ marginLeft: 20, fontSize: 14, color: 'white', marginBottom: 40 }}>Address: {location}</Text>
+          </View>
+        }
+        {inThisMission &&
+          <View>
+            <Text style={{ marginLeft: 20, fontSize: 18, color: 'white', marginBottom: 40 }}>in This Mission</Text>
           </View>
         }
         <View style={{ marginBottom: 200 }}>
