@@ -6,30 +6,24 @@ import styled from 'styled-components';
 
 import response from '../../assets/response.json';
 
-const Card: React.FC = props => {
+const Home: React.FC = props => {
 
   const { name } = props.data;
   const { description } = props.data;
   const { picture } = props.data;
 
   return (
-
-    <View style={{ flex: 1, marginHorizontal: 20, marginTop: 20 }}>
-      <View style={{ height: 80, flexDirection: 'row', alignItems: 'center', borderWidth: 1 }}>
-        <View style={{
-          width: '20%',
-          height: '100%',
-          backgroundColor: 'white',
-          borderWidth: 1,
-          borderColor: 'black',
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}>
+    <View style={{ flex: 1, marginHorizontal: 20, marginBottom: 100 }}>
+      <View style={{ height: 80, flexDirection: 'row', alignItems: 'center' }}>
+        <ImageContainer>
           <Image
-            style={{ width: "100%", height: "100%" }}
+            style={{
+              width: "100%",
+              height: "100%",
+            }}
             source={{ uri: `${picture}` }}
           />
-        </View>
+        </ImageContainer>
         <View style={{ flexDirection: 'column', marginLeft: 10, justifyContent: 'flex-end' }}>
           <View>
             <Name>{name}</Name>
@@ -39,6 +33,7 @@ const Card: React.FC = props => {
           </View>
         </View>
       </View>
+      <Hr></Hr>
     </View >
 
   )
@@ -46,14 +41,28 @@ const Card: React.FC = props => {
 
 const View = styled.View``;
 
+const Hr = styled.View`
+  margin-top: 10;
+  width: 100%;
+  border-top-width: .3;
+  border-color: red;
+`;
+
+const ImageContainer = styled.View`
+  width: 20%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Name = styled.Text`
-  font-size:16;
-  color:black;
+  font-size: 16;
+  color:  white;
 `;
 
 const Description = styled.Text`
-  font-size:20;
-  color:black;
+  font-size: 20;
+  color: white;
 `;
 
-export default Card;
+export default Home;
