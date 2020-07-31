@@ -9,31 +9,42 @@ import response from '../../assets/response.json';
 const Card: React.FC = props => {
 
   const { name } = props.data;
-  const { description } = props.data;
+  let description = props.data.location;
   const { picture } = props.data;
 
+  if (props.data.description) {
+    description = props.data.description;
+  }
+  if (props.data.location) {
+    description = props.data.location;
+  }
+  if (props.data.role) {
+    description = props.data.role;
+  }
+
   return (
-    <View style={{ flex: 1, marginHorizontal: 20, marginBottom: 100 }}>
+    <View style={{ flex: 1, marginHorizontal: 20 }}>
       <View style={{ height: 80, flexDirection: 'row', alignItems: 'center' }}>
         <ImageContainer>
           <Image
             style={{
               width: "100%",
               height: "100%",
+              // borderRadius: '50'
             }}
             source={{ uri: `${picture}` }}
           />
         </ImageContainer>
         <View style={{ flexDirection: 'column', marginLeft: 10, justifyContent: 'flex-end' }}>
           <View>
-            <Name>{name}</Name>
+            <Text name >{name}</Text>
           </View>
           <View>
-            <Description>{description}</Description>
+            <Text description>{description}</Text>
           </View>
         </View>
       </View>
-      <Hr></Hr>
+      <Hr />
     </View >
 
   )
@@ -46,6 +57,7 @@ const Hr = styled.View`
   width: 100%;
   border-top-width: .3;
   border-color: red;
+  margin-bottom: 10;
 `;
 
 const ImageContainer = styled.View`
@@ -55,14 +67,24 @@ const ImageContainer = styled.View`
   align-items: center;
 `;
 
-const Name = styled.Text`
-  font-size: 16;
-  color:  white;
-`;
-
-const Description = styled.Text`
-  font-size: 20;
+const Text = styled.Text`
   color: white;
-`;
 
+  ${(props) => {
+    switch (true) {
+      case props.name:
+        return (
+          "font-size: 16px;"
+        );
+      case props.description:
+        return (
+          "font-size: 20px;"
+        );
+      default:
+        return (
+          "color: red"
+        );
+    }
+  }}
+`;
 export default Card;

@@ -1,58 +1,116 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-import Details from '../Detail';
+import React, { useEffect, useState } from 'react';
+import { View, TouchableOpacity, ScrollView } from 'react-native';
+
 import styled from 'styled-components';
 
-const Home: React.FC = () => {
+import Details from '../ListMembers';
+import Card from '../../components/card';
 
+import api from '../../services/api';
+
+import { useNavigation } from '@react-navigation/native';
+
+
+const AllMembers = (name, picture, navigation) => {
   return (
-    <View style={{ backgroundColor: '#92370f' }}>
-      <View>
-        <Text style={{ margin: 40, fontSize: 24, color: '#e7a385', marginBottom: 40 }}>Corpo de Bombeiros</Text>
-      </View>
-      <View style={{
-        height: 200,
-        backgroundColor: 'white',
-        borderTopLeftRadius: 50,
-        borderTopRightRadius: 50,
-      }}>
-        <Text style={{
-          marginTop: 30,
-          marginLeft: 40,
-          fontSize: 20,
-          color: 'brown',
-          marginBottom: 20
-        }}>
-          Operações Em Andamento
-        </Text>
-
-        <View style={{
-          height: 35,
-          marginHorizontal: 40,
-          justifyContent: 'center',
-          marginBottom: 40,
-          backgroundColor: '#ffe8d6',
-
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
-
-          borderBottomLeftRadius: 20,
-          borderBottomRightRadius: 20,
-        }}>
-
-          <Text style={{
-            marginTop: 0,
-            marginLeft: 20,
-            fontSize: 20,
-            color: 'brown',
-          }}>
-            Incêndio Florestal
-          </Text>
-
-        </View>
-      </View>
+    <View style={{ marginTop: 0 }}>
+      <TouchableOpacity onPress={() => navigation.navigate('ListMembers', {
+        title: name,
+        description: name,
+        api: name,
+        preTitle: "Department's "
+      })}>
+        <Card data={{ 'description': "Department's " + name, 'picture': picture }} />
+      </TouchableOpacity>
     </View>
+  );
+};
+
+interface Data {
+  id: string;
+  name: string;
+  location: string;
+}
+
+const Home: React.FC = () => {
+  const navigation = useNavigation();
+
+  const [data, setData] = useState<Data[]>([]);
+
+  useEffect(() => {
+    api.get('/missions').then(response => {
+      setData(response.data);
+    });
+  }, []);
+
+  function onPress() {
+    navigation.navigate('Detail', {
+
+    });
+  }
+  return (
+    <ScrollView style={{ flex: 1, backgroundColor: '#2d2d2d' }}>
+      <View style={{ margin: 20 }} >
+        <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 20 }}>
+          <Text title style={{ color: 'red' }}>Fire </Text><Text title>Department</Text>
+        </View>
+        <View>
+          <Text>Operations</Text>
+        </View>
+        <View style={{ marginTop: 0 }}>
+          {data.map(response => (
+            <TouchableOpacity key={response.id} onPress={() => navigation.navigate('ListMembers', {
+              id: response.id,
+              title: response.name,
+              location: response.location,
+              api: `missions`
+            })}>
+              <Card data={response} />
+            </TouchableOpacity>
+          ))}
+        </View>
+        <View style={{ flexDirection: 'row', marginTop: 40 }}>
+          <Text style={{ color: 'red' }}>Our </Text><Text>Department</Text>
+        </View>
+        {AllMembers(
+          'Firefighters ',
+          'https://img.firehouse.com/files/base/cygnus/fhc/image/2020/05/16x9/Quincy_Firefighter_Recruits__MA_.5ec00a544ffc6.png?auto=format&fit=max&w=1200',
+          navigation,
+        )}
+        {AllMembers(
+          'Animals ',
+          'https://babyanimalzoo.com/wp-content/uploads/2012/08/260dalmatianfirestation.ashx_.jpg',
+          navigation,
+        )}
+        {AllMembers(
+          'Vehicles ',
+          'https://highways.today/wp-content/uploads/2020/03/IAGP6185-scaled-e1583266092592.jpg',
+          navigation,
+        )}
+
+
+      </View>
+    </ScrollView >
   )
 }
+
+const Text = styled.Text`
+
+  color: white;
+  margin-bottom: 40;
+
+  ${(props) => {
+    switch (true) {
+      case props.title:
+        return (
+          "font-size: 24px;align-self: center;"
+        );
+      default:
+        return (
+          "font-size: 18px;"
+        );
+    }
+  }}
+`;
 
 export default Home;
