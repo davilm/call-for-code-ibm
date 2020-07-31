@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import Details from '../Details';
+import Details from '../Detail';
 import styled from 'styled-components';
 
 const Home: React.FC = () => {

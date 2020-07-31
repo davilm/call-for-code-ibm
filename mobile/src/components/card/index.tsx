@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 import response from '../../assets/response.json';
 
-const Home: React.FC = props => {
+const Card: React.FC = props => {
 
   const { name } = props.data;
   const { description } = props.data;
@@ -65,4 +65,4 @@ const Description = styled.Text`
   color: white;
 `;
 
-export default Home;
+export default Card;

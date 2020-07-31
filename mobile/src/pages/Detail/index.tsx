@@ -15,7 +15,7 @@ const Person = [
     picture: "https://icon-library.com/images/no-profile-pic-icon/no-profile-pic-icon-27.jpg",
   }
 ];
-const Details: React.FC = () => {
+const Detail: React.FC = () => {
 
   return (
     <View style={{ flex: 1, backgroundColor: '#2d2d2d', flexDirection: 'column' }}>
@@ -30,4 +30,4 @@ const Details: React.FC = () => {
 }
 
 
-export default Details;
+export default Detail;
