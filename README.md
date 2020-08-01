@@ -30,3 +30,8 @@ With that in mind, we developed a super application to manage all the operations
 
 - [React Native](https://facebook.github.io/react-native/)
 - [Expo](https://expo.io/)
+
+## Backend
+
+
+[Link to Api Repository](https://github.com/cmtehenz/backendIBM)
